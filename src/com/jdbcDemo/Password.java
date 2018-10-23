@@ -49,4 +49,29 @@ public class Password extends HttpServlet{
         }
         out.println("</table></html>");
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException
+    {
+        String name = request.getParameter("name");
+        String url = request.getParameter("url");
+
+        System.out.println(name);
+        System.out.println(url);
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "insert password (name,url) values ('" + name + "','" + url + "')";
+            System.out.println(sql);
+            int id = stmt.executeUpdate(sql);
+            out.println("新增成功，id 为" + id);
+        }catch(Exception e) {
+            out.println("新增失败");
+            e.printStackTrace();
+        }
+    }
 }

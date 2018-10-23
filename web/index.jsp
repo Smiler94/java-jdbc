@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>jdbc demo</title>
   </head>
   <body>
-  $END$
+  <form action="/Password" method="post">
+     名称: <input type="text" name="name"/>
+     链接: <input type="text" name="url"/>
+    <input type="submit" value="提交">
+  </form>
   </body>
 </html>
+<% request.setCharacterEncoding("UTF-8"); %>
